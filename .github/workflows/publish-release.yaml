@@ -28,7 +28,7 @@ jobs:
 
   release:
     name: Publish release
-    runs-on: ubuntu-latest
+    runs-on: self-hosted 
     container: redhat/ubi8
     steps:
     - name: Install git
@@ -62,4 +62,3 @@ jobs:
         GPG_FINGERPRINT: ${{ steps.import_gpg_key.outputs.fingerprint }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-runs-on: self-hosted
