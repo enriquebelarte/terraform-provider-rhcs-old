@@ -61,3 +61,5 @@ jobs:
       env:
         GPG_FINGERPRINT: ${{ steps.import_gpg_key.outputs.fingerprint }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+runs-on: self-hosted

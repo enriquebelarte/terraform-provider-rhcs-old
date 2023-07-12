@@ -53,3 +53,5 @@ jobs:
 
     - name: Run the tests
       run: make tests
+
+runs-on: self-hosted
