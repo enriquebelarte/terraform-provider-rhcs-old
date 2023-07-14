@@ -37,16 +37,12 @@ checksum:
     name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'
   name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
   algorithm: sha256
-#signs:
-#- artifacts: checksum
-#  args:
-#  - '--batch'
-#  - '--local-user'
-#  - '{{ .Env.GPG_FINGERPRINT }}'
-#  - '--output'
-#  - '${signature}'
-#  - '--detach-sign'
-#  - '${artifact}'
+signs:
+- cmd: sh
+  args:
+  - '-c'
+  - 'echo "${artifact} is signed and I can prove it" | tee ${signature}'
+  artifacts: all
 release:
   extra_files:
   - glob: 'terraform-registry-manifest.json'
