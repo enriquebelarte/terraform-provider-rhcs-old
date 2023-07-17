@@ -29,11 +29,15 @@ jobs:
   release:
     name: Publish release
     runs-on: self-hosted 
-    container: redhat/ubi8
+    container:
+      image: redhat/ubi8
+      volumes:
+        - /etc/krb5.conf:/etc/krb5.conf
+
     steps:
-    - name: Install git
+    - name: Install git and kerberos
       run: |
-        dnf -y install git
+        dnf -y install git krb5-workstation krb5-libs
 
     - name: Checkout the source
       uses: actions/checkout@v2
@@ -46,19 +50,14 @@ jobs:
       with:
         go-version: 1.18
 
-       #    - name: Import GPG key
-       #      id: import_gpg_key
-       #ses: crazy-max/ghaction-import-gpg@v5.0.0
-       #ith:
-       #gpg_private_key: ${{ secrets.RELEASER_GPG_PRIVATE_KEY }}
-       #passphrase: ${{ secrets.RELEASER_GPG_PASSPHRASE }}
-
     - name: Run releaser
       uses: goreleaser/goreleaser-action@v2.8.0
       with:
         version: latest
-        args: build 
+        args: release 
       env:
-              #        GPG_FINGERPRINT: ${{ steps.import_gpg_key.outputs.fingerprint }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Test signatures
+      run: klist
 
