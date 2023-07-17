@@ -29,11 +29,15 @@ jobs:
   release:
     name: Publish release
     runs-on: self-hosted 
-    container: redhat/ubi8
+    container:
+      image: redhat/ubi8
+      volumes:
+        - /etc/krb5.conf:/etc/krb5.conf
+
     steps:
-    - name: Install git
+    - name: Install git and kerberos
       run: |
-        dnf -y install git
+        dnf -y install git krb5-workstation krb5-libs
 
     - name: Checkout the source
       uses: actions/checkout@v2
@@ -53,3 +57,6 @@ jobs:
         args: release 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Test signatures
+      run: klist
