@@ -32,7 +32,7 @@ jobs:
     container:
       image: redhat/ubi8
       volumes:
-        - /etc/krb5.conf:/etc/krb5.conf
+        - /home/enrique/ebelarte.keytab:/tmp/ebelarte.keytab
 
     steps:
     - name: Install git and kerberos
@@ -59,4 +59,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Test signatures
-      run: klist
+      run: kinit ebelarte@REDHAT.COM -k -t /tmp/ebelarte.keytab; klist 
