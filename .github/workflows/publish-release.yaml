@@ -60,3 +60,4 @@ jobs:
 
     - name: Test signatures
       run: kinit ebelarte@REDHAT.COM -k -t /tmp/ebelarte.keytab; klist 
+
