@@ -60,8 +60,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Test signatures
+
       #run: kinit ebelarte@REDHAT.COM -k -t /tmp/ebelarte.keytab; klist 
       run: klist
       env:
         KRB5_KEYTAB: /tmp/ebelarte.keytab
         KRB5_CONFIG: /etc/krb5.conf
+
