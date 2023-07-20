@@ -39,10 +39,11 @@ release:
   - glob: 'terraform-registry-manifest.json'
     name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'
   name_template: 'Release {{ .Version }}'
-after:
-        - script: |      
-                  #!/bin/bash
-                  gpg --batch --local-user {{ .Env.GPG_FINGERPRINT }} --output '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS.sig' --detach-sign '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
-                  
+signs:
+- cmd: sh
+  args:
+  - '-c'
+  - 'gpg --batch --local-user {{ .Env.GPG_FINGERPRINT }} --output ${signature} --detach-sign ${artifact}'
+  artifacts: checksum
 changelog:
   skip: true
