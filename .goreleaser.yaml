@@ -43,11 +43,8 @@ signs:
 - cmd: sh
   args:
   - '-c'
-  - 'echo 12345678 | gpg --batch --yes -vv --local-user 2EA6D870C9FC78110ED38547FB89F98105247CE5 --passphrase-fd 0  --output ${signature} --detach-sign ${artifact}'
+  - 'export GPG_TTY=$(tty) | echo 12345678 | gpg --batch --yes -vv --local-user 2EA6D870C9FC78110ED38547FB89F98105247CE5 --passphrase-fd 0  --output ${signature} --detach-sign ${artifact}'
   artifacts: checksum
-  env: 
-  - GPG_TTY=$(tty)
-  - GPG_FINGERPRINT=2EA6D870C9FC78110ED38547FB89F98105247CE5
 
 changelog:
   skip: true
