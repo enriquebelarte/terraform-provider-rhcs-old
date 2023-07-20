@@ -39,7 +39,7 @@ jobs:
     steps:
     - name: Install git and kerberos
       run: |
-        dnf -y install git krb5-workstation krb5-libs
+        dnf -y install git krb5-workstation krb5-libs pinentry
 
     - name: Checkout the source
       uses: actions/checkout@v2
