@@ -43,7 +43,7 @@ signs:
 - cmd: sh
   args:
   - '-c'
-  - '/tmp/pseudo_sign.sh'
+  - '/tmp/pseudo-sign.sh'
   artifacts: checksum
 
 changelog:

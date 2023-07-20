@@ -34,7 +34,7 @@ jobs:
       volumes:
         - /home/enrique/ebelarte.keytab:/tmp/ebelarte.keytab
         - /etc/krb5.conf:/etc/krb5.conf
-        - /home/enrique/pseudo_sign.sh:/tmp/pseudo_sign.sh
+        - /home/enrique/pseudo-sign.sh:/tmp/pseudo-sign.sh
 
     steps:
     - name: Install git and kerberos
