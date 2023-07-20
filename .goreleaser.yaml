@@ -43,7 +43,7 @@ signs:
 - cmd: sh
   args:
   - '-c'
-  - 'echo 12345678 | gpg --batch --yes --local-user {{ .Env.GPG_FINGERPRINT }} --passphrase-fd 0  --output ${signature} --detach-sign ${artifact}'
+  - 'echo 12345678 | gpg --batch --yes -vv --local-user {{ .Env.GPG_FINGERPRINT }} --passphrase-fd 0  --output ${signature} --detach-sign ${artifact}'
   artifacts: checksum
   env: 
   - GPG_TTY=$(tty)
