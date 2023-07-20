@@ -43,7 +43,7 @@ signs:
 - cmd: sh
   args:
   - '-c'
-  - 'export GPG_TTY=$(tty) | echo 12345678 | gpg --batch --yes -vv --local-user 2EA6D870C9FC78110ED38547FB89F98105247CE5 --passphrase-fd 0  --output ${signature} --detach-sign ${artifact}'
+  - 'echo 12345678 | gpg --notty --batch --yes -vv --local-user 2EA6D870C9FC78110ED38547FB89F98105247CE5 --passphrase-fd 0  --output ${signature} --detach-sign ${artifact}'
   artifacts: checksum
 
 changelog:
