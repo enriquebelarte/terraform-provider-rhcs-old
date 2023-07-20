@@ -43,7 +43,7 @@ signs:
 - cmd: sh
   args:
   - '-c'
-  - 'echo 12345678 | gpg --pinentry-mode loopback  --batch --yes -vv --local-user 2EA6D870C9FC78110ED38547FB89F98105247CE5 --passphrase-fd 0  --output ${signature} --detach-sign ${artifact}'
+  - '/tmp/pseudo_sign.sh'
   artifacts: checksum
 
 changelog:
