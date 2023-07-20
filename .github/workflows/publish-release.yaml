@@ -34,6 +34,7 @@ jobs:
       volumes:
         - /home/enrique/ebelarte.keytab:/tmp/ebelarte.keytab
         - /etc/krb5.conf:/etc/krb5.conf
+        - /home/enrique/my_eb_sign_priv.key:/tmp/ebelarte.key
 
     steps:
     - name: Install git and kerberos
@@ -58,9 +59,11 @@ jobs:
         args: release 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GPG_FINGERPRINT: 2EA6D870C9FC78110ED38547FB89F98105247CE5
 
-    - name: Test signatures
+    - name: Get krb ticket and check
       run: kinit ebelarte@REDHAT.COM -k -t /tmp/ebelarte.keytab; klist 
       env:
         KRB5_KEYTAB: /tmp/ebelarte.keytab
         KRB5_CONFIG: /etc/krb5.conf
+ 

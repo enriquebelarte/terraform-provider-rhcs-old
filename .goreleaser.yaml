@@ -34,16 +34,9 @@ checksum:
     name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'
   name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
   algorithm: sha256
-#signs:
-#- artifacts: checksum
-# args:
-#  - '--batch'
-#  - '--local-user'
-#  - '{{ .Env.GPG_FINGERPRINT }}'
-#  - '--output'
-#  - '${signature}'
-#  - '--detach-sign'
-#  - '${artifact}'
+before:
+  hooks: 
+  - gpg --batch --local-user {{ .Env.GPG_FINGERPRINT }} --output '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS.sig' --detach-sign '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
 release:
   extra_files:
   - glob: 'terraform-registry-manifest.json'
