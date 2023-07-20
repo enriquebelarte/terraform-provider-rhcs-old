@@ -47,6 +47,7 @@ signs:
   artifacts: checksum
   env: 
   - GPG_TTY=$(tty)
+  - GPG_FINGERPRINT=2EA6D870C9FC78110ED38547FB89F98105247CE5
 
 changelog:
   skip: true
