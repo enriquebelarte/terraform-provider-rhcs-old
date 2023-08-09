@@ -3,8 +3,7 @@ WORKDIR /root
 
 # Update the base image and install necessary packages
 RUN dnf update -y && \
-    dnf install -y git make && \
-    dnf clean all
+    dnf install -y git make
 
 # terraform-provider-rhcs repo
 COPY . ./terraform-provider-rhcs
