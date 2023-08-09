@@ -6,6 +6,5 @@ FROM registry.access.redhat.com/ubi8/go-toolset:latest AS builder
 COPY . .
 
 ENV GOFLAGS=-buildvcs=false
-RUN make prepare_release version=12.0 &&\
-    echo 'RUN done'
+RUN make prepare_release version=12.0
 
