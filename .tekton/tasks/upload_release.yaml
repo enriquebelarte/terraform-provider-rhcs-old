@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: tf-rhcs-github-release
+spec:
+  params:
+    - name: version
+      type: string
+    - name: release_notes
+      type: string
+    - name: branch
+      type: string
+    - name: repo
+      type: string
+
+  steps:
+    - name: create-release-from-image
+      image: quay.io/ebelarte/tf-rhcs/download-release:latest
+      script: |
+        cd /tmp/release
+        gh release create $(params.version) * --repo $(params.repo)
+
