@@ -6,6 +6,6 @@ FROM registry.access.redhat.com/ubi8/go-toolset:latest AS builder
 COPY . .
 
 
-RUN go mod tidy && go mod vendor && make build &&\
+RUN make build &&\
     echo 'RUN done'
 
