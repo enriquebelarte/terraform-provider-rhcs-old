@@ -134,7 +134,7 @@ prepare_release: build
 	rm terraform-provider-rhcs
 	zip release/terraform-provider-rhcs_$(version)_linux_$(TARGET_ARCH).zip CHANGELOG.md LICENSE README.md terraform-provider-rhcs_v$(version)
 	cp terraform-registry-manifest.json release/terraform-provider-rhcs_$(version)_manifest.json
-	shasum -a 256 release/*.zip release/terraform-provider-rhcs_$(version)_manifest.json > release/terraform-provider-rhcs_$(version)_SHA256SUMS
+	sha256sum release/*.zip release/terraform-provider-rhcs_$(version)_manifest.json > release/terraform-provider-rhcs_$(version)_SHA256SUMS
 
 .PHONY: delete_release
 delete_release:
