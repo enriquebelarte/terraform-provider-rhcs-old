@@ -390,7 +390,7 @@ spec:
         - name: name
           value: tf-rhcs-github-release
         - name: bundle
-          value: quay.io/redhat-appstudio-tekton-catalog/task-buildah:0.1@sha256:1bad811625ba6866ae476b0b04e92b51aaeaa1cd40fa88f89ec7165ebe61d045
+          value: quay.io/redhat-appstudio-tekton-catalog/task-configure-build
         - name: kind
           value: task
         resolver: bundles
