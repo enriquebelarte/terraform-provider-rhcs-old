@@ -393,6 +393,8 @@ spec:
           value: upload-files
         - name: kind
           value: task
+        - name: bundle
+          value: alpine:latest
         resolver: bundles
       when:
       - input: $(params.skip-checks)
