@@ -18,7 +18,7 @@ metadata:
 spec:
   params:
   - name: dockerfile
-    value: https://raw.githubusercontent.com/devfile-samples/devfile-sample-go-basic/main/docker/Dockerfile
+    value: https://raw.githubusercontent.com/enriquebelarte/terraform-provider-rhcs/main/build/ci-tf-bin.Dockerfile
   - name: git-url
     value: '{{repo_url}}'
   - name: output-image
