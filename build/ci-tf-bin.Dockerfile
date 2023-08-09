@@ -5,7 +5,7 @@ FROM registry.access.redhat.com/ubi8/go-toolset:latest AS builder
 # terraform-provider-rhcs repo
 COPY . .
 
-
+ENV GOFLAGS=-buildvcs=false
 RUN make build &&\
     echo 'RUN done'
 
