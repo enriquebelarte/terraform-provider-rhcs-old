@@ -400,7 +400,6 @@ spec:
         values:
         - "false"
 
-
     workingDir: /releases
     workspaces:
     - name: workspace
