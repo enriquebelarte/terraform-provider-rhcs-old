@@ -132,7 +132,7 @@ prepare_release: build
 	release_version=$(REL_VER)
 	cp terraform-provider-rhcs release/terraform-provider-rhcs_v$(version)
 	rm terraform-provider-rhcs
-	zip release/terraform-provider-rhcs_$(version)_linux_$(TARGET_ARCH).zip CHANGELOG.md LICENSE README.md terraform-provider-rhcs_v$(version)
+	zip release/terraform-provider-rhcs_$(version)_$(TARGET_ARCH).zip CHANGELOG.md LICENSE README.md terraform-provider-rhcs_v$(version)
 	cp terraform-registry-manifest.json release/terraform-provider-rhcs_$(version)_manifest.json
 	sha256sum release/*.zip release/terraform-provider-rhcs_$(version)_manifest.json > release/terraform-provider-rhcs_$(version)_SHA256SUMS
 
