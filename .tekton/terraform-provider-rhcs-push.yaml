@@ -214,11 +214,10 @@ spec:
         value: $(params.image-expires-after)
       - name: COMMIT_SHA
         value: $(tasks.clone-repository.results.commit)
+      - name: RELEASE_VERSION
+        value: 12.0
       script: |
-        cp terraform-provider-rhcs terraform-provider-rhcs_v{VERSION}.
-        zip terraform-provider-rhcs_{VERSION}_{OS}_{ARCH}.zip.
-There is a terraform-provider-{NAME}_{VERSION}_manifest.json file, which contains the Terraform Registry manifest file in the release.
-There is a terraform-provider-{NAME}_{VERSION}_SHA256SUMS file, which contains a SHA-256 checksum for each zip file and the manifest file in the release.
+        make prepare_release version=$(params.RELEASE_VERSION)
       runAfter:
       - prefetch-dependencies
       taskRef:
