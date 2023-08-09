@@ -127,15 +127,16 @@ binary:
 	podman run --pull=always --rm registry.ci.openshift.org/ci/rhcs-tf-bin:latest cat /root/terraform-provider-rhcs > ~/terraform-provider-rhcs && chmod +x ~/terraform-provider-rhcs
 
 .PHONY: prepare_release
-prepare_release: build
-	mkdir release
-	release_version=$(REL_VER)
-	cp terraform-provider-rhcs release/terraform-provider-rhcs_v$(version)
-	rm terraform-provider-rhcs
-	zip release/terraform-provider-rhcs_$(version)_$(TARGET_ARCH).zip CHANGELOG.md LICENSE README.md terraform-provider-rhcs_v$(version)
-	cp terraform-registry-manifest.json release/terraform-provider-rhcs_$(version)_manifest.json
-	sha256sum release/*.zip release/terraform-provider-rhcs_$(version)_manifest.json > release/terraform-provider-rhcs_$(version)_SHA256SUMS
+prepare_release:
+	build/build_multiarch
+#	cp terraform-provider-rhcs release/terraform-provider-rhcs_v$(version)
+#	rm terraform-provider-rhcs
+#	zip release/terraform-provider-rhcs_$(version)_arm64.zip CHANGELOG.md LICENSE README.md release/terraform-provider-rhcs_v$(version)
+#	cp terraform-registry-manifest.json release/terraform-provider-rhcs_$(version)_manifest.json
+#	sha256sum release/*.zip release/terraform-provider-rhcs_$(version)_manifest.json > release/terraform-provider-rhcs_$(version)_SHA256SUMS
+
 
 .PHONY: delete_release
 delete_release:
+
 	rm -rf release
