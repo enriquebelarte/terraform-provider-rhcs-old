@@ -369,41 +369,6 @@ spec:
         operator: in
         values:
         - "false"
-    - name: upload-files
-      params:
-      - name: IMAGE_URL
-        value: $(tasks.build-container.results.IMAGE_URL)
-      - name: IMAGE_DIGEST
-        value: $(tasks.build-container.results.IMAGE_DIGEST)
-      script: |
-         curl -o /usr/bin/gh https://github.com/cli/cli/releases/download/v2.2.0/gh_2.2.0_linux_arm64.tar.gz
-         chmod +x /usr/bin/gh
-         cd /releases
-         gh release create $(params.version) * --repo $(params.repo)
-      runAfter:
-      - sbom-json-check
-      taskRef:
-        params:
-        - name: name
-          value: upload-files
-        - name: bundle
-          value: alpine/curl:latest
-        - name: version
-          value: v11.8  # Replace this with your desired version number
-        - name: release_notes
-          value: "Release notes for v11.2"  # Replace this with your release notes
-        - name: branch
-          value: main
-        - name: repo
-          value: "enriquebelarte/terraform-provider-rhcs"
-        - name: kind
-          value: task
-        resolver: bundles
-      when:
-      - input: $(params.skip-checks)
-        operator: in
-        values:
-        - "false"
 
     workingDir: /releases
     workspaces:
