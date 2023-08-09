@@ -369,6 +369,36 @@ spec:
         operator: in
         values:
         - "false"
+    - name: tf-rhcs-github-release
+      params:
+      - name: version
+        value: 11.9
+      - name: release_notes
+        type: string
+      - name: branch
+        type: string
+      - name: repo
+        type: string
+      script: |
+        cd /tmp/release
+        gh release create $(params.version) * --repo $(params.repo)
+
+      runAfter:
+      - build-container #You can be more specific by choosing another task
+      taskRef:
+        params:
+        - name: name
+          value: tf-rhcs-github-release
+        - name: bundle
+          value: quay.io/ebelarte/tf-rhcs/download-release:latest
+        - name: kind
+          value: task
+        resolver: bundles
+      when:
+      - input: $(params.skip-checks)    #This references the pipeline parameters
+        operator: in
+        values:
+        - "false"
 
 
     workingDir: /releases
