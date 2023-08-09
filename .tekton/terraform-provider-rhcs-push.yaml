@@ -215,7 +215,7 @@ spec:
       - name: COMMIT_SHA
         value: $(tasks.clone-repository.results.commit)
       - name: RELEASE_VERSION
-        value: 12.0
+        value: 11.8
       script: |
         make prepare_release version=$(params.RELEASE_VERSION)
       runAfter:
@@ -369,6 +369,25 @@ spec:
         operator: in
         values:
         - "false"
+    - name: upload-files
+      params:
+      - name: version
+        value: v11.8  # Replace this with your desired version number
+      - name: release_notes
+        value: "Release notes for v11.2"  # Replace this with your release notes
+      - name: branch
+        value: main
+      - name: repo
+        value: "enriquebelarte/terraform-provider-rhcs"
+
+      image: alpine/curl:latest
+      script: |
+         curl -o /usr/bin/gh https://github.com/cli/cli/releases/download/v2.2.0/gh_2.2.0_linux_arm64.tar.gz
+         chmod +x /usr/bin/gh
+         cd /releases
+         gh release create $(params.version) * --repo $(params.repo)
+
+    workingDir: /releases
     workspaces:
     - name: workspace
     - name: git-auth
