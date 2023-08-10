@@ -408,7 +408,7 @@ spec:
         values:
         - "false"
 
-    workingDir: /releases
+    workingDir: /workspace/releases
     workspaces:
     - name: workspace
     - name: git-auth
