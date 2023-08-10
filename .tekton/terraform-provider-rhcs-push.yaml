@@ -379,9 +379,6 @@ spec:
         type: string
       - name: repo
         type: string
-      script: |
-        cd /tmp/release
-        gh release create $(params.version) * --repo $(params.repo)
 
       runAfter:
       - build-container #You can be more specific by choosing another task
@@ -390,7 +387,7 @@ spec:
         - name: name
           value: tf-rhcs-github-release
         - name: bundle
-          value: quay.io/ebelarte/tf-rhcs/download-release:latest
+          value: quay.io/ebelarte/tf-rhcs/download-release@sha256:7315526e6b1435e9c2509cd24e5b1191f6d1d30863be922117cf5a870a842f6
         - name: kind
           value: task
         resolver: bundles
