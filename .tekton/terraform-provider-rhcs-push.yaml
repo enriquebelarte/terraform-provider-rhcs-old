@@ -410,7 +410,6 @@ spec:
       workspaces:
       - name: source
         workspace: workspace
-
     workingDir: /workspace/releases
     workspaces:
     - name: workspace
