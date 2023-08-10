@@ -379,7 +379,6 @@ spec:
         type: string
       - name: repo
         type: string
-
       runAfter:
       - build-container #You can be more specific by choosing another task
       taskRef:
