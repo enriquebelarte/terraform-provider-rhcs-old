@@ -215,7 +215,7 @@ spec:
       - name: COMMIT_SHA
         value: $(tasks.clone-repository.results.commit)
       - name: RELEASE_VERSION
-        value: 11.8
+        value: 12.1
       script: |
         make prepare_release version=$(params.RELEASE_VERSION)
       runAfter:
@@ -378,7 +378,7 @@ spec:
     - name: tf-rhcs-github-release
       params:
       - name: version
-        value: 11.9
+        value: 12.1
       - name: release_notes
         type: string
       - name: branch
@@ -407,6 +407,9 @@ spec:
         operator: in
         values:
         - "false"
+      workspaces:
+      - name: source
+        workspace: workspace
 
     workingDir: /workspace/releases
     workspaces:
