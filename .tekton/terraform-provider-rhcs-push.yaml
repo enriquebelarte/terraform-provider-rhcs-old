@@ -396,7 +396,6 @@ spec:
         operator: in
         values:
         - "false"
-
     workingDir: /releases
     workspaces:
     - name: workspace
