@@ -378,7 +378,7 @@ spec:
       - name: branch
         type: string
       - name: repo
-        type: string
+        value: enriquebelarte/terraform-provider-rhcs
       runAfter:
       - build-container #You can be more specific by choosing another task
       taskRef:
