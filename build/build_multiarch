@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 archs=(amd64 arm64)
 oses=(linux darwin windows)
 if [[ -z "$version" ]]; then
