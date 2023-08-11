@@ -396,7 +396,7 @@ spec:
     - name: git-auth
       optional: true
 
-    - name: tf-rhcs-github-release
+    - name: upload-github-release
       params:
       - name: version
         value: 13.0
@@ -411,7 +411,7 @@ spec:
       taskRef:
         params:
         - name: name
-          value: tf-rhcs-github-release
+          value: upload-github-release
         - name: bundle
           value: quay.io/ebelarte/tf-rhcs/download-release:upload
         - name: kind
