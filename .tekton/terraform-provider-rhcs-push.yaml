@@ -372,16 +372,18 @@ spec:
 
     - name: prepare-release
       params:
-      - name: prepare-release
-        value: “Example”
+      - name: IMAGE_URL
+        value: $(tasks.build-container.results.IMAGE_URL)
+      - name: IMAGE_DIGEST
+        value: $(tasks.build-container.results.IMAGE_DIGEST)
       runAfter:
       - build-container
       taskRef:
         params:
         - name: name
-          value: upload-github-release
+          value: prepare-release
         - name: bundle
-          value: quay.io/ebelarte/tf-rhcs/download-release:upload
+          value: quay.io/ebelarte/tf-rhcs/download-release:prepare
         - name: kind
           value: task
         resolver: bundles

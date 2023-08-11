@@ -21,7 +21,7 @@ spec:
       type: string
   steps:
     - name: prepare-release
-      image: ubi8/go-toolset:latest
+      image: ubi9/go-toolset:latest
       command: ["make"]
       args: ["prepare_release", "version=$VERSION"]
       env:
