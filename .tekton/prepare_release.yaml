@@ -23,11 +23,8 @@ spec:
   steps:
     - name: prepare-release
       image: ubi9/go-toolset:latest
-
-      #command: ["make"]
-      #args: ["-C", "/workspace/terraform-provider-rhcs", "prepare_release", "version=$VERSION"]
-      command: ["/bin/sh", "-c"]
-      args: ["ls -la /workspace/releases/"]
+      command: ["make"]
+      args: ["-C", "/workspace/releases", "prepare_release", "version=$VERSION"]
 
       env:
         - name: VERSION
