@@ -14,7 +14,7 @@ spec:
       type: string
   steps:
     - name: prepare-release
-      image: ubi9:latest
+      image: ubi9:go-toolset
       script: |
         #!/usr/bin/env bash
         make prepare_release version=$(params.version)
