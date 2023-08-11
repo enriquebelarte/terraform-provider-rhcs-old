@@ -17,13 +17,9 @@ spec:
   steps:
     - name: create-release-from-binaries
       image: ubi9:latest
-      env:
-      - name: HOME
-        value: /releases
       script: |
         #!/usr/bin/env bash
-        [[ $HOME == /releases ]]
-        RUN wget https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_amd64.tar.gz && \
+        wget https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_amd64.tar.gz && \
         tar -zvxf gh_2.32.1_linux_amd64.tar.gz && \
         mv gh_2.32.1_linux_amd64/bin/gh /bin/gh && \
         chmod +x /bin/gh && \
