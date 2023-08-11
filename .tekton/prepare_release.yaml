@@ -27,7 +27,7 @@ spec:
       #command: ["make"]
       #args: ["-C", "/workspace/terraform-provider-rhcs", "prepare_release", "version=$VERSION"]
       command: ["/bin/sh", "-c"]
-      args: ["ls -la /workspace/"]
+      args: ["ls -la /workspace/releases/"]
 
       env:
         - name: VERSION
