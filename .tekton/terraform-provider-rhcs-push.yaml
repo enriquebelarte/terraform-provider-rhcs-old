@@ -214,12 +214,6 @@ spec:
         value: $(params.image-expires-after)
       - name: COMMIT_SHA
         value: $(tasks.clone-repository.results.commit)
-      - name: RELEASE_VERSION
-        value: 13.0
-      script: |
-        export VERSION=$(params.RELEASE_VERSION)
-        echo "Preparing $(params.RELEASE_VERSION) at $(workspaces.workspace.path)"
-        cp -rp release $(workspaces.workspace.path)/
       runAfter:
       - prefetch-dependencies
       taskRef:
@@ -371,7 +365,7 @@ spec:
         operator: in
         values:
         - "false"
-    - name: tf-rhcs-github-release
+    - name: prepare-release
       params:
       - name: version
         value: 13.0
@@ -386,9 +380,40 @@ spec:
       taskRef:
         params:
         - name: name
+          value: prepare-release
+        - name: bundle
+          value: quay.io/ebelarte/tf-rhcs/download-release:prepare
+        - name: kind
+          value: task
+        resolver: bundles
+      when:
+      - input: $(params.skip-checks)    #This references the pipeline parameters
+        operator: in
+        values:
+        - "false"
+    workspaces:
+    - name: workspace
+    - name: git-auth
+      optional: true
+
+    - name: tf-rhcs-github-release
+      params:
+      - name: version
+        value: 13.0
+      - name: release_notes
+        type: string
+      - name: branch
+        type: string
+      - name: repo
+        value: enriquebelarte/terraform-provider-rhcs
+      runAfter:
+      - prepare-release
+      taskRef:
+        params:
+        - name: name
           value: tf-rhcs-github-release
         - name: bundle
-          value: quay.io/ebelarte/tf-rhcs/download-release:bundle
+          value: quay.io/ebelarte/tf-rhcs/download-release:upload
         - name: kind
           value: task
         resolver: bundles
