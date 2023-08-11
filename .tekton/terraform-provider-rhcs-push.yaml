@@ -407,7 +407,7 @@ spec:
       - name: repo
         value: enriquebelarte/terraform-provider-rhcs
       runAfter:
-      - prepare-release
+      - build-container
       taskRef:
         params:
         - name: name
