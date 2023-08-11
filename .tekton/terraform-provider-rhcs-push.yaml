@@ -215,9 +215,10 @@ spec:
       - name: COMMIT_SHA
         value: $(tasks.clone-repository.results.commit)
       - name: RELEASE_VERSION
-        value: 12.1
+        value: 13.0
       script: |
         make prepare_release version=$(params.RELEASE_VERSION)
+        cp -rp release $(workspaces.workspace.path)/
       runAfter:
       - prefetch-dependencies
       taskRef:
@@ -229,12 +230,6 @@ spec:
         - name: kind
           value: task
         resolver: bundles
-      resources:
-        outputs:
-          - name: shared-output
-            resourceSpec:
-              type: Workspace
-              path: /workspace/releases
       when:
       - input: $(tasks.init.results.build)
         operator: in
@@ -378,7 +373,7 @@ spec:
     - name: tf-rhcs-github-release
       params:
       - name: version
-        value: 12.1
+        value: 13.0
       - name: release_notes
         type: string
       - name: branch
@@ -392,22 +387,15 @@ spec:
         - name: name
           value: tf-rhcs-github-release
         - name: bundle
-          value: quay.io/ebelarte/tf-rhcs/download-release:bundle
+          value: quay.io/ebelarte/tf-rhcs/download-release@sha256:e42511ef6988a3d69c5bb18aba3e39c95c2f100539e7480427a9024099817927
         - name: kind
           value: task
         resolver: bundles
-      resources:
-        inputs:
-          - name: shared-input
-            resourceSpec:
-              type: Workspace
-              path: /workspace/releases
       when:
       - input: $(params.skip-checks)    #This references the pipeline parameters
         operator: in
         values:
         - "false"
-    workingDir: /workspace/releases
     workspaces:
     - name: workspace
     - name: git-auth
