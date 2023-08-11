@@ -369,7 +369,7 @@ spec:
       params:
       - name: version
         value: 13.0
-      - name: release_notes
+      - name: release-notes
         type: string
       - name: branch
         type: string
