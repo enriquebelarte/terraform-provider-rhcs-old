@@ -4,8 +4,9 @@ metadata:
   name: prepare-release
 spec:
   workspaces:
-  - name: output
+  - name: releases
     workspace: workspace
+
   params:
     - name: version
       description: Version of the release
