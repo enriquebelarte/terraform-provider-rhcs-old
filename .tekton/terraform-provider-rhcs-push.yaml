@@ -371,6 +371,14 @@ spec:
         value: $(tasks.build-container.results.IMAGE_URL)
       - name: IMAGE_DIGEST
         value: $(tasks.build-container.results.IMAGE_DIGEST)
+      - name: version
+        value: 13.0
+      - name: release-notes
+        type: string
+      - name: branch
+        type: string
+      - name: repo
+        value: enriquebelarte/terraform-provider-rhcs
       runAfter:
       - build-container
       taskRef:
