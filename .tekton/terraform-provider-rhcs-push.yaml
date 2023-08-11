@@ -18,7 +18,7 @@ metadata:
 spec:
   params:
   - name: dockerfile
-    value: https://raw.githubusercontent.com/enriquebelarte/terraform-provider-rhcs/main/build/ci-tf-bin.Dockerfile
+    value: https://raw.githubusercontent.com/enriquebelarte/terraform-provider-rhcs/main/build/ci-prepare-release.Dockerfile
   - name: git-url
     value: '{{repo_url}}'
   - name: output-image
@@ -217,8 +217,8 @@ spec:
       - name: RELEASE_VERSION
         value: 13.0
       script: |
+        export VERSION=$(params.RELEASE_VERSION)
         echo "Preparing $(params.RELEASE_VERSION) at $(workspaces.workspace.path)"
-        make prepare_release version=$(params.RELEASE_VERSION)
         cp -rp release $(workspaces.workspace.path)/
       runAfter:
       - prefetch-dependencies
