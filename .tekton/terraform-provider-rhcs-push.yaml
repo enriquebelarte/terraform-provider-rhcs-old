@@ -217,6 +217,7 @@ spec:
       - name: RELEASE_VERSION
         value: 13.0
       script: |
+        echo "Preparing $(params.RELEASE_VERSION) at $(workspaces.workspace.path)"
         make prepare_release version=$(params.RELEASE_VERSION)
         cp -rp release $(workspaces.workspace.path)/
       runAfter:
