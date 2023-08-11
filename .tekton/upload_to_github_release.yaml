@@ -19,7 +19,7 @@ spec:
       image: ubi9:latest
       script: |
         #!/usr/bin/env bash
-        wget https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_amd64.tar.gz && \
+        curl -O https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_amd64.tar.gz && \
         tar -zvxf gh_2.32.1_linux_amd64.tar.gz && \
         mv gh_2.32.1_linux_amd64/bin/gh /bin/gh && \
         chmod +x /bin/gh && \
