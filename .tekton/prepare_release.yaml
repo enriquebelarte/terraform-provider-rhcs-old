@@ -3,33 +3,53 @@ kind: Task
 metadata:
   name: prepare-release
 spec:
+  workspaces:
+    - name: source-workspace
+      description: Workspace containing source code
   params:
     - name: version
+      description: Version of the release
       type: string
-    - name: release_notes
+    - name: release-notes
+      description: Release notes for the version
       type: string
     - name: branch
+      description: Git branch for the release
       type: string
     - name: repo
+      description: Git repository for the release
       type: string
   steps:
     - name: prepare-release
       image: ubi8/go-toolset:latest
-      script: |
-        #!/usr/bin/env bash
-        dnf -y install make
-        dnf clean all
-        rm -rf /var/cache/yum
-        make prepare_release version=$(params.version)
-
-
-
-
-
-
-
-
-
-
-
+      command: ["sh", "-c"]
+      args: [
+        "cp -r /workspace/source-workspace/* /release-dir/",
+        "echo 'Preparing release for version: $VERSION'",
+        "echo 'Release notes: $RELEASE_NOTES'",
+        "echo 'Branch: $BRANCH'",
+        "echo 'Repository: $REPO'",
+        "dnf -y install make",
+        "make prepare_release version=$VERSION"
+      ]
+      env:
+        - name: VERSION
+          value: $(params.version)
+        - name: RELEASE_NOTES
+          value: $(params.release-notes)
+        - name: BRANCH
+          value: $(params.branch)
+        - name: REPO
+          value: $(params.repo)
+      volumeMounts:
+        - name: source-volume
+          mountPath: /workspace/source-workspace
+        - name: release-dir
+          mountPath: /release-dir
+  volumes:
+    - name: source-volume
+      workspaceVolumeSource:
+        workspaceName: source-workspace
+    - name: release-dir
+      emptyDir: {}
 
