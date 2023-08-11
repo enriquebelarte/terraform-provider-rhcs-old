@@ -396,7 +396,7 @@ spec:
         values:
         - "false"
       workspaces:
-      - name: output-workspace
+      - name: output
         workspace: workspace
 
     workspaces:
