@@ -128,12 +128,7 @@ binary:
 
 .PHONY: prepare_release
 prepare_release:
-	ldflags='$(ldflags)' bash ./build/build_multiarch
-#	cp terraform-provider-rhcs release/terraform-provider-rhcs_v$(version)
-#	rm terraform-provider-rhcs
-#	zip release/terraform-provider-rhcs_$(version)_arm64.zip CHANGELOG.md LICENSE README.md release/terraform-provider-rhcs_v$(version)
-#	cp terraform-registry-manifest.json release/terraform-provider-rhcs_$(version)_manifest.json
-#	sha256sum release/*.zip release/terraform-provider-rhcs_$(version)_manifest.json > release/terraform-provider-rhcs_$(version)_SHA256SUMS
+	import_path='$(import_path)' version='$(version)' commit='$(commit)' ldflags='$(ldflags)' bash ./build/build_multiarch
 
 
 .PHONY: delete_release
