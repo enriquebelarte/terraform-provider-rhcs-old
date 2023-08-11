@@ -18,7 +18,7 @@ metadata:
 spec:
   params:
   - name: dockerfile
-    value: https://raw.githubusercontent.com/enriquebelarte/terraform-provider-rhcs/main/build/ci-prepare-release.Dockerfile
+    value: https://raw.githubusercontent.com/devfile-samples/devfile-sample-go-basic/main/docker/Dockerfile
   - name: git-url
     value: '{{repo_url}}'
   - name: output-image
@@ -365,47 +365,15 @@ spec:
         operator: in
         values:
         - "false"
-    - name: prepare-release
-      params:
-      - name: version
-        value: 13.0
-      - name: release-notes
-        type: string
-      - name: branch
-        type: string
-      - name: repo
-        value: enriquebelarte/terraform-provider-rhcs
-      runAfter:
-      - build-container #You can be more specific by choosing another task
-      taskRef:
-        params:
-        - name: name
-          value: prepare-release
-        - name: bundle
-          value: quay.io/ebelarte/tf-rhcs/download-release:prepare
-        - name: kind
-          value: task
-        resolver: bundles
-      when:
-      - input: $(params.skip-checks)    #This references the pipeline parameters
-        operator: in
-        values:
-        - "false"
     workspaces:
     - name: workspace
     - name: git-auth
       optional: true
 
-    - name: upload-github-release
+    - name: prepare-release
       params:
-      - name: version
-        value: 13.0
-      - name: release_notes
-        type: string
-      - name: branch
-        type: string
-      - name: repo
-        value: enriquebelarte/terraform-provider-rhcs
+      - name: prepare-release
+        value: “Example”
       runAfter:
       - build-container
       taskRef:
@@ -424,8 +392,8 @@ spec:
         - "false"
     workspaces:
     - name: workspace
-    - name: git-auth
-      optional: true
+      workspace: workspace
+
   workspaces:
   - name: workspace
     volumeClaimTemplate:
@@ -442,4 +410,3 @@ spec:
     secret:
       secretName: '{{ git_auth_secret }}'
 status: {}
-
