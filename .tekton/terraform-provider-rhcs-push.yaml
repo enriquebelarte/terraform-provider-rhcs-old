@@ -387,14 +387,11 @@ spec:
         operator: in
         values:
         - "false"
-      workspaces:
-      - name: workspace
-        workspace: workspace
+
     workspaces:
     - name: workspace
     - name: git-auth
-     optional: true
-
+      optional: true
   workspaces:
   - name: workspace
     volumeClaimTemplate:
@@ -410,4 +407,4 @@ spec:
   - name: git-auth
     secret:
       secretName: '{{ git_auth_secret }}'
-status: {}
+
