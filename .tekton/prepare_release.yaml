@@ -3,9 +3,6 @@ kind: Task
 metadata:
   name: prepare-release
 spec:
-  workspaces:
-    - name: source-workspace
-      description: Workspace containing source code
   params:
     - name: version
       description: Version of the release
@@ -22,8 +19,10 @@ spec:
   steps:
     - name: prepare-release
       image: ubi9/go-toolset:latest
+
       command: ["make"]
-      args: ["prepare_release", "version=$VERSION"]
+      args: ["-C", "/workspace/source-workspace", "prepare_release", "version=$VERSION"]
+
       env:
         - name: VERSION
           value: $(params.version)
@@ -44,4 +43,3 @@ spec:
         workspaceName: source-workspace
     - name: release-dir
       emptyDir: {}
-
