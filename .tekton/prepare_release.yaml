@@ -22,17 +22,8 @@ spec:
   steps:
     - name: prepare-release
       image: ubi8/go-toolset:latest
-      command: ["sh", "-c"]
-      args: [
-        "cp -r /workspace/source-workspace/* /release-dir/",
-        "echo 'Preparing release for version: $VERSION'",
-        "echo 'Release notes: $RELEASE_NOTES'",
-        "echo 'Branch: $BRANCH'",
-        "echo 'Repository: $REPO'",
-        "dnf -y install make",
-        "cd /release-dir/",
-        "make prepare_release version=$VERSION"
-      ]
+      command: ["make"]
+      args: ["prepare_release", "version=$VERSION"]
       env:
         - name: VERSION
           value: $(params.version)
