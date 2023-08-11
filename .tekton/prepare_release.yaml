@@ -21,7 +21,7 @@ spec:
       image: ubi9/go-toolset:latest
 
       command: ["make"]
-      args: ["-C", "/workspace/source-workspace", "prepare_release", "version=$VERSION"]
+      args: ["-C", "/workspace/terraform-provider-rhcs", "prepare_release", "version=$VERSION"]
 
       env:
         - name: VERSION
@@ -32,14 +32,3 @@ spec:
           value: $(params.branch)
         - name: REPO
           value: $(params.repo)
-      volumeMounts:
-        - name: source-volume
-          mountPath: /workspace/source-workspace
-        - name: release-dir
-          mountPath: /release-dir
-  volumes:
-    - name: source-volume
-      workspaceVolumeSource:
-        workspaceName: source-workspace
-    - name: release-dir
-      emptyDir: {}

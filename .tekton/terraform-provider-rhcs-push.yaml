@@ -396,12 +396,14 @@ spec:
         values:
         - "false"
       workspaces:
-      - name: source-workspace
+      - name: output-workspace
         workspace: workspace
 
     workspaces:
     - name: workspace
     - name: git-auth
+
+
       optional: true
   workspaces:
   - name: workspace
