@@ -387,7 +387,7 @@ spec:
         - name: name
           value: tf-rhcs-github-release
         - name: bundle
-          value: quay.io/ebelarte/tf-rhcs/download-release@sha256:e42511ef6988a3d69c5bb18aba3e39c95c2f100539e7480427a9024099817927
+          value: quay.io/ebelarte/tf-rhcs/download-release:bundle
         - name: kind
           value: task
         resolver: bundles
