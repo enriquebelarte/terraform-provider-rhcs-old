@@ -395,6 +395,9 @@ spec:
         operator: in
         values:
         - "false"
+      workspaces:
+      - name: source-workspace
+        workspace: workspace
 
     workspaces:
     - name: workspace
