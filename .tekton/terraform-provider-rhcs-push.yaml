@@ -365,11 +365,6 @@ spec:
         operator: in
         values:
         - "false"
-    workspaces:
-    - name: workspace
-    - name: git-auth
-      optional: true
-
     - name: prepare-release
       params:
       - name: IMAGE_URL
@@ -392,9 +387,13 @@ spec:
         operator: in
         values:
         - "false"
+      workspaces:
+      - name: workspace
+        workspace: workspace
     workspaces:
     - name: workspace
-      workspace: workspace
+    - name: git-auth
+     optional: true
 
   workspaces:
   - name: workspace
