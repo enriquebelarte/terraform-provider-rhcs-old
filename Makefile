@@ -128,7 +128,7 @@ binary:
 
 .PHONY: prepare_release
 prepare_release:
-	bash ./build/build_multiarch
+	ldflags='$(ldflags)' bash ./build/build_multiarch
 #	cp terraform-provider-rhcs release/terraform-provider-rhcs_v$(version)
 #	rm terraform-provider-rhcs
 #	zip release/terraform-provider-rhcs_$(version)_arm64.zip CHANGELOG.md LICENSE README.md release/terraform-provider-rhcs_v$(version)

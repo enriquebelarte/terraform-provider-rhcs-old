@@ -17,7 +17,7 @@ do
         extension=".exe"
     fi
     GOOS=${os} GOARCH=${arch} go build -ldflags="${ldflags}" -o terraform-provider-rhcs_${os}_${arch}
-    mv terraform-provider-rhcs_${os}_${arch} terraform-provider-rhcs_v${version}
+    mv terraform-provider-rhcs_${os}_${arch} terraform-provider-rhcs_v${version}${extension}
     zip releases/terraform-provider-rhcs_${version}_${os}_${arch}.zip CHANGELOG.md LICENSE README.md terraform-provider-rhcs_v${version}${extension}
     rm terraform-provider-rhcs_v${version}
     cp terraform-registry-manifest.json releases/terraform-provider-rhcs_${version}_manifest.json
