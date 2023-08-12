@@ -16,7 +16,7 @@ spec:
     - name: repo
       type: string
     - name: rel_ver
-    - type: string
+      type: string
   steps:
     - name: create-release-from-binaries
       image: ubi9:latest
