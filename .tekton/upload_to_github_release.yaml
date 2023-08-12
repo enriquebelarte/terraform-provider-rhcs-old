@@ -6,7 +6,7 @@ spec:
   params:
     - name: version
       type: string
-    - name: release_notes
+    - name: release-notes
       type: string
     - name: branch
       type: string
