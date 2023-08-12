@@ -27,7 +27,7 @@ spec:
         mv gh_2.32.1_linux_amd64/bin/gh /bin/gh && \
         chmod +x /bin/gh && \
         cd /workspace/gh-upload/releases && \
-        gh release create $REL_VER *.zip *.json --repo $REPO
+        gh release create $REL_VER *.zip *.json *SHA256SUM --repo $REPO
         # We will add .sig file when we have the sigining step done
         #gh release create $REL_VER *.zip *.json *.sig --repo $REPO
 

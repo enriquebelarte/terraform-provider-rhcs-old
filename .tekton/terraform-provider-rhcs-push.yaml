@@ -380,7 +380,7 @@ spec:
       - name: repo
         value: enriquebelarte/terraform-provider-rhcs
       - name: rel_ver
-        value: 13.1
+        value: 14.0
       runAfter:
       - build-container
       taskRef:
@@ -417,7 +417,7 @@ spec:
       - name: repo
         value: enriquebelarte/terraform-provider-rhcs
       - name: rel_ver
-        value: 13.1
+        value: 14.0
       runAfter:
       - prepare-release
       taskRef:
