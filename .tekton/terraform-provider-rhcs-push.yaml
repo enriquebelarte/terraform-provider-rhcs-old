@@ -411,7 +411,7 @@ spec:
       - name: version
         value: 13.0
       - name: release-notes
-        type: string
+        value: "Release notes for $(params.rel_ver)"
       - name: branch
         type: string
       - name: repo
