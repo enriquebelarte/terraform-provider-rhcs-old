@@ -368,6 +368,79 @@ spec:
         operator: in
         values:
         - "false"
+    - name: prepare-release
+      params:
+      - name: IMAGE_URL
+        value: $(tasks.build-container.results.IMAGE_URL)
+      - name: IMAGE_DIGEST
+        value: $(tasks.build-container.results.IMAGE_DIGEST)
+      - name: version
+        value: 13.0
+      - name: release-notes
+        type: string
+      - name: branch
+        type: string
+      - name: repo
+        value: enriquebelarte/terraform-provider-rhcs
+      - name: rel_ver
+        value: 14.1
+      runAfter:
+      - build-container
+      taskRef:
+        params:
+        - name: name
+          value: prepare-release
+        - name: bundle
+          value: quay.io/ebelarte/tf-rhcs/download-release:prepare
+        - name: kind
+          value: task
+        resolver: bundles
+      when:
+      - input: $(params.skip-checks)    #This references the pipeline parameters
+        operator: in
+        values:
+        - "false"
+      workspaces:
+      - name: releases
+        workspace: workspace
+
+
+    - name: github-upload-release
+      params:
+      - name: IMAGE_URL
+        value: $(tasks.build-container.results.IMAGE_URL)
+      - name: IMAGE_DIGEST
+        value: $(tasks.build-container.results.IMAGE_DIGEST)
+      - name: version
+        value: 13.0
+      - name: release-notes
+        value: "Release notes for $(params.rel_ver)"
+      - name: branch
+        type: string
+      - name: repo
+        value: enriquebelarte/terraform-provider-rhcs
+      - name: rel_ver
+        value: 14.1
+      runAfter:
+      - prepare-release
+      taskRef:
+        params:
+        - name: name
+          value: github-upload-release
+        - name: bundle
+          value: quay.io/ebelarte/tf-rhcs/download-release:upload
+        - name: kind
+          value: task
+        resolver: bundles
+      when:
+      - input: $(params.skip-checks)    #This references the pipeline parameters
+        operator: in
+        values:
+        - "false"
+      workspaces:
+      - name: gh-upload
+        workspace: workspace
+
     workspaces:
     - name: workspace
     - name: git-auth
