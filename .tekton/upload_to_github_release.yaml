@@ -12,6 +12,7 @@ spec:
       type: string
     - name: repo
       type: string
+    - name: 
   steps:
     - name: create-release-from-binaries
       image: ubi9:latest
@@ -21,11 +22,22 @@ spec:
         tar -zvxf gh_2.32.1_linux_amd64.tar.gz && \
         mv gh_2.32.1_linux_amd64/bin/gh /bin/gh && \
         chmod +x /bin/gh && \
-        cd $(workspaces.workspace.path)/releases && \
-        gh release create $(params.version) *.zip *.json *.sig --repo $(params.repo)
+        cd /workspace/gh-upload/releases && \
+        gh release create $REL_VER *.zip *.json *.sig --repo $REPO
       env:
         - name: GH_TOKEN
           valueFrom:
             secretKeyRef:
               name: github-token-secret
               key: token
+        - name: VERSION
+          value: $(params.version)
+        - name: RELEASE_NOTES
+          value: $(params.release-notes)
+        - name: BRANCH
+          value: $(params.branch)
+        - name: REPO
+          value: $(params.repo)
+        - name: REL_VER
+          value: $(params.rel_ver)
+
