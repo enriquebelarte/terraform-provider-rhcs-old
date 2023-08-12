@@ -12,7 +12,6 @@ spec:
       type: string
     - name: repo
       type: string
-    - name: 
   steps:
     - name: create-release-from-binaries
       image: ubi9:latest
