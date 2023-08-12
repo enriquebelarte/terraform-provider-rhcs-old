@@ -129,7 +129,7 @@ binary:
 .PHONY: prepare_release
 
 prepare_release:
-	bash build/build_multiarch.sh
+	bash build/build_multiarch
 
 
 .PHONY: delete_release
