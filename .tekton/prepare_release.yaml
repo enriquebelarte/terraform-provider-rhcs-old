@@ -27,8 +27,12 @@ spec:
   steps:
     - name: prepare-release
       image: ubi9/go-toolset:latest
-      command: ["make"]
-      args: ["-C", "/workspace/releases", "prepare_release", "version=$REL_VER"]
+      script: |
+        git config --global --add safe.directory /workspace/releases
+        make
+        -C /workspace/releases
+        prepare_release
+        version=$REL_VER
 
       env:
         - name: VERSION
