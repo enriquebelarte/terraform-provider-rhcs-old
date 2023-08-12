@@ -3,6 +3,9 @@ kind: Task
 metadata:
   name: github-upload-release
 spec:
+  workspaces:
+  - name: gh-upload
+    workspace: workspace
   params:
     - name: version
       type: string
