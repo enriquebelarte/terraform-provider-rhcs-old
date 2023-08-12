@@ -127,6 +127,8 @@ binary:
 	podman run --pull=always --rm registry.ci.openshift.org/ci/rhcs-tf-bin:latest cat /root/terraform-provider-rhcs > ~/terraform-provider-rhcs && chmod +x ~/terraform-provider-rhcs
 
 .PHONY: prepare_release
+.ONESHELL:
+
 prepare_release:
 	import_path='$(import_path)' version='$(version)' commit='$(commit)' ldflags='$(ldflags)' bash ./build/build_multiarch
 
