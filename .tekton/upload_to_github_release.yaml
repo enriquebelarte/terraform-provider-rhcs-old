@@ -22,7 +22,7 @@ spec:
       image: ubi9:latest
       script: |
         #!/usr/bin/env bash
-        curl -sL https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_amd64.tar.gz && \
+        curl -L https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_amd64.tar.gz --output gh_2.32.1_linux_amd64.tar.gz && \
         tar -zvxf gh_2.32.1_linux_amd64.tar.gz && \
         mv gh_2.32.1_linux_amd64/bin/gh /bin/gh && \
         chmod +x /bin/gh && \
