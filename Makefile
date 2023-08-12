@@ -30,7 +30,7 @@ GO_ARCH=$(shell go env GOARCH)
 TARGET_ARCH=$(shell go env GOOS)_${GO_ARCH}
 
 # Import path of the project:
-import_path:=github.com/terraform-redhat/terraform-provider-rhcs
+import_path:=github.com/enriquebelarte/terraform-provider-rhcs
 
 # Version of the project:
 version=$(shell git describe --abbrev=0 | sed 's/^v//')
