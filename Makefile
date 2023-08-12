@@ -129,10 +129,6 @@ binary:
 .PHONY: prepare_release
 
 prepare_release:
-	export VERSION=$(version)
-	export COMMIT=$(commit)
-	export LDFLAGS=$(ldflags)
-	export IMPORT_PATH=$(import_path)
 	bash ./build/build_multiarch.sh
 
 

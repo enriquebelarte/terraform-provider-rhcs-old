@@ -20,11 +20,15 @@ spec:
     - name: repo
       description: Git repository for the release
       type: string
+    - name: rel_ver
+      description: Custom version of release
+      type: string
+
   steps:
     - name: prepare-release
       image: ubi9/go-toolset:latest
       command: ["make"]
-      args: ["-C", "/workspace/releases", "prepare_release", "version=$VERSION"]
+      args: ["-C", "/workspace/releases", "prepare_release", "version=$REL_VER"]
 
       env:
         - name: VERSION
@@ -35,3 +39,5 @@ spec:
           value: $(params.branch)
         - name: REPO
           value: $(params.repo)
+        - name: REL_VER
+          value: $(params.rel_ver)
