@@ -21,9 +21,9 @@ do
     zip releases/terraform-provider-rhcs_${REL_VER}_${os}_${arch}.zip CHANGELOG.md LICENSE README.md terraform-provider-rhcs_v${REL_VER}${extension}
     rm terraform-provider-rhcs_v${REL_VER}${extension}
     cp terraform-registry-manifest.json releases/terraform-provider-rhcs_${REL_VER}_manifest.json
-    sha256sum releases/*zip releases/terraform-provider-rhcs_${REL_VER}_manifest.json > releases/terraform-provider-rhcs_${REL_VER}_SHA256SUMS
   done
 done
+sha256sum releases/*zip releases/terraform-provider-rhcs_${REL_VER}_manifest.json > releases/terraform-provider-rhcs_${REL_VER}_SHA256SUMS
 }
 
 prepare_release
