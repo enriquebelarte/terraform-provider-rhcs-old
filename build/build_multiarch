@@ -16,12 +16,12 @@ do
     if [[ $os == "windows" ]]; then
         extension=".exe"
     fi
-    GOOS=${os} GOARCH=${arch} go build -ldflags="${ldflags}" -o terraform-provider-rhcs_${os}_${arch}
-    mv terraform-provider-rhcs_${os}_${arch} terraform-provider-rhcs_v$VERSION${extension}
-    zip releases/terraform-provider-rhcs_$VERSION_${os}_${arch}.zip CHANGELOG.md LICENSE README.md terraform-provider-rhcs_v$VERSION${extension}
-    rm terraform-provider-rhcs_v$VERSION
-    cp terraform-registry-manifest.json releases/terraform-provider-rhcs_$VERSION_manifest.json
-    sha256sum releases/*zip releases/terraform-provider-rhcs_$VERSION_manifest.json > releases/terraform-provider-rhcs_$VERSION_SHA256SUMS
+    GOOS=${os} GOARCH=${arch} go build -ldflags="$LDFLAGS" -o ./terraform-provider-rhcs_${os}_${arch}
+    mv terraform-provider-rhcs_${os}_${arch} terraform-provider-rhcs_v${VERSION}${extension}
+    zip releases/terraform-provider-rhcs_${VERSION}_${os}_${arch}.zip CHANGELOG.md LICENSE README.md terraform-provider-rhcs_v${VERSION}${extension}
+    rm terraform-provider-rhcs_v${VERSION}
+    cp terraform-registry-manifest.json releases/terraform-provider-rhcs_${VERSION}_manifest.json
+    sha256sum releases/*zip releases/terraform-provider-rhcs_${VERSION}_manifest.json > releases/terraform-provider-rhcs_${VERSION}_SHA256SUMS
   done
 done
 }
