@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: upload-github-release
+  name: github-upload-release
 spec:
   params:
     - name: version
