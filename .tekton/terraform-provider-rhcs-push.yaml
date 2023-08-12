@@ -379,6 +379,8 @@ spec:
         type: string
       - name: repo
         value: enriquebelarte/terraform-provider-rhcs
+      - name: rel_ver
+        value: 13.1
       runAfter:
       - build-container
       taskRef:
