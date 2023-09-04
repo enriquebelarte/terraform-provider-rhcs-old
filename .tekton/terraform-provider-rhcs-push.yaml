@@ -420,7 +420,8 @@ spec:
       - name: rel_ver
         value: 16.0
       runAfter:
-      - prepare-release
+      #- prepare-release
+      - build-container
       taskRef:
         params:
         - name: name
