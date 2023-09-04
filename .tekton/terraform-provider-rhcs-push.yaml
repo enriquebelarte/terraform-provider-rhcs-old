@@ -418,7 +418,7 @@ spec:
       - name: repo
         value: enriquebelarte/terraform-provider-rhcs
       - name: rel_ver
-        value: 15.0
+        value: 16.0
       runAfter:
       - prepare-release
       taskRef:
