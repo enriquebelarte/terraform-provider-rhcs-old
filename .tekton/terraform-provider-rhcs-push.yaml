@@ -18,8 +18,8 @@ metadata:
 spec:
   params:
   - name: dockerfile
-    value: https://raw.githubusercontent.com/devfile-samples/devfile-sample-go-basic/main/docker/Dockerfile
-    #value: https://raw.githubusercontent.com/enriquebelarte/terraform-provider-rhcs/main/build/ci-build.Dockerfile
+    #value: https://raw.githubusercontent.com/devfile-samples/devfile-sample-go-basic/main/docker/Dockerfile
+    value: https://raw.githubusercontent.com/enriquebelarte/terraform-provider-rhcs/main/build/ci-prepare-release.Dockerfile
   - name: git-url
     value: '{{repo_url}}'
   - name: output-image
@@ -366,43 +366,43 @@ spec:
         operator: in
         values:
         - "false"
-    - name: prepare-release
-      params:
-      - name: IMAGE_URL
-        value: $(tasks.build-container.results.IMAGE_URL)
-      - name: IMAGE_DIGEST
-        value: $(tasks.build-container.results.IMAGE_DIGEST)
-      - name: version
-        value: 13.0
-      - name: release-notes
-        type: string
-      - name: branch
-        type: string
-      - name: repo
-        value: enriquebelarte/terraform-provider-rhcs
-      - name: rel_ver
-        value: 15.0
-      runAfter:
-      - build-container
-      taskRef:
-        params:
-        - name: name
-          value: prepare-release
-        - name: bundle
-          value: quay.io/ebelarte/tf-rhcs/download-release:prepare
-        - name: kind
-          value: task
-        resolver: bundles
-      when:
-      - input: $(params.skip-checks)    #This references the pipeline parameters
-        operator: in
-        values:
-        - "false"
-      workspaces:
-      - name: releases
-        workspace: workspace
-
-
+#    - name: prepare-release
+#      params:
+#      - name: IMAGE_URL
+#        value: $(tasks.build-container.results.IMAGE_URL)
+#      - name: IMAGE_DIGEST
+#        value: $(tasks.build-container.results.IMAGE_DIGEST)
+#      - name: version
+#        value: 13.0
+#      - name: release-notes
+#        type: string
+#      - name: branch
+#        type: string
+#      - name: repo
+#        value: enriquebelarte/terraform-provider-rhcs
+#      - name: rel_ver
+#        value: 15.0
+#      runAfter:
+#      - build-container
+#      taskRef:
+#        params:
+#        - name: name
+#          value: prepare-release
+#        - name: bundle
+#          value: quay.io/ebelarte/tf-rhcs/download-release:prepare
+#        - name: kind
+#          value: task
+#        resolver: bundles
+#      when:
+#      - input: $(params.skip-checks)    #This references the pipeline parameters
+#        operator: in
+#        values:
+#        - "false"
+#      workspaces:
+#      - name: releases
+#        workspace: workspace
+#
+#
     - name: github-upload-release
       params:
       - name: IMAGE_URL
