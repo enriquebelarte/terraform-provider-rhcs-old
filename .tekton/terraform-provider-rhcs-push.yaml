@@ -18,7 +18,6 @@ metadata:
 spec:
   params:
   - name: dockerfile
-    #value: https://raw.githubusercontent.com/devfile-samples/devfile-sample-go-basic/main/docker/Dockerfile
     value: https://raw.githubusercontent.com/enriquebelarte/terraform-provider-rhcs/main/build/ci-prepare-release.Dockerfile
   - name: git-url
     value: '{{repo_url}}'
@@ -215,6 +214,9 @@ spec:
         value: $(params.image-expires-after)
       - name: COMMIT_SHA
         value: $(tasks.clone-repository.results.commit)
+      - name: REL_VER
+        value: '{{tag}}'
+
       runAfter:
       - prefetch-dependencies
       taskRef:
@@ -403,43 +405,44 @@ spec:
 #        workspace: workspace
 #
 #
-    - name: github-upload-release
-      params:
-      - name: IMAGE_URL
-        value: $(tasks.build-container.results.IMAGE_URL)
-      - name: IMAGE_DIGEST
-        value: $(tasks.build-container.results.IMAGE_DIGEST)
-      - name: version
-        value: 13.0
-      - name: release-notes
-        value: "Release notes for $(params.rel_ver)"
-      - name: branch
-        type: string
-      - name: repo
-        value: enriquebelarte/terraform-provider-rhcs
-      - name: rel_ver
-        value: 15.0
-      runAfter:
-      - prepare-release
-      taskRef:
-        params:
-        - name: name
-          value: github-upload-release
-        - name: bundle
-          value: quay.io/ebelarte/tf-rhcs/download-release:upload
-        - name: kind
-          value: task
-        resolver: bundles
-      when:
-      - input: $(params.skip-checks)    #This references the pipeline parameters
-        operator: in
-        values:
-        - "false"
-      workspaces:
-      - name: gh-upload
-        workspace: workspace
-
-
+#    - name: github-upload-release
+#      params:
+#      - name: IMAGE_URL
+#        value: $(tasks.build-container.results.IMAGE_URL)
+#      - name: IMAGE_DIGEST
+#        value: $(tasks.build-container.results.IMAGE_DIGEST)
+#      - name: version
+#        value: 13.0
+#      - name: release-notes
+#        value: "Release notes for $(params.rel_ver)"
+#      - name: branch
+#        type: string
+#      - name: repo
+#        value: enriquebelarte/terraform-provider-rhcs
+#      - name: rel_ver
+#        value: 16.0
+#      runAfter:
+#      #- prepare-release
+#      - build-container
+#      taskRef:
+#        params:
+#        - name: name
+#          value: github-upload-release
+#        - name: bundle
+#          value: quay.io/ebelarte/tf-rhcs/download-release:upload
+#        - name: kind
+#          value: task
+#        resolver: bundles
+#      when:
+#      - input: $(params.skip-checks)    #This references the pipeline parameters
+#        operator: in
+#        values:
+#        - "false"
+#      workspaces:
+#      - name: gh-upload
+#        workspace: workspace
+#
+#
 
 
 

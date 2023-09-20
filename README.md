@@ -4,7 +4,7 @@ page_title: "Red Hat Cloud Services Provider"
 subcategory: ""
 description: |-
   
----
+------
 <a href="https://redhat.com">
     <img src=".github/Logo_Red_Hat.png" alt="Red Hat logo" title="Red Hat" align="right" height="50" />
 </a>
