@@ -2,6 +2,7 @@
 set -x
 archs=(amd64 arm64)
 oses=(linux darwin windows)
+REL_VER=$(git describe --tags `git rev-list --tags --max-count=1`)
 if [[ -z "$REL_VER" ]]; then
     echo "Must provide version to prepare release" 1>&2
     exit 1
