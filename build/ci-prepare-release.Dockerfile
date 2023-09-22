@@ -4,5 +4,9 @@ COPY . .
 
 ENV GOFLAGS=-buildvcs=false
 
-#RUN git config --global --add safe.directory /workspace/releases
-RUN export REL_VER=$(git describe --tags `git rev-list --tags --max-count=1`) && echo "REL_VER=$REL_VER" && pwd && make prepare_release
+RUN git config --global --add safe.directory /opt/app-root/src && \
+    cd /opt/app-root/src && \
+    export REL_VER=$(git describe --tags `git rev-list --tags --max-count=1`) && \
+    echo "REL_VER=$REL_VER" && \
+    make prepare_release version=$REL_VER
+
