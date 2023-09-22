@@ -1,22 +1,12 @@
-name: Get Latest Tag
-
 on:
-  workflow_dispatch:
-
+  push:
+    tags:
+      - '*'
 jobs:
-  get-latest-tag:
+  github-example-tags:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
-
-    - name: Get latest tag
-      id: get_tag
-      run: |
-        latest_tag=$(git describe --tags --abbrev=0)
-        # Extract the numeric part of the tag
-        numeric_tag="${latest_tag#"v"}"
-        echo "::set-output name=numeric_tag::$numeric_tag"
-
-    - name: Print numeric tag
-      run: echo "Numeric Tag: ${{ steps.get_tag.outputs.numeric_tag }}"
+     - name: GitHub Tag Name example
+       run: |
+         echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
+         echo "Tag name from github.ref_name: ${{  github.ref_name }}"
