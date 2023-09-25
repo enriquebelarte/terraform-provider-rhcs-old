@@ -3,7 +3,7 @@ set -x
 archs=(amd64 arm64)
 oses=(linux darwin windows)
 
-REL_VER=$(git ls-remote --tags --sort='-v:refname' https://github.com/enriquebelarte/terraform-provider-rhcs | head -n 1 | awk -F/ {'print $3'}| sed "s/v//")
+REL_VER=$(git ls-remote --tags --sort='-v:refname' $import_path | head -n 1 | awk -F/ {'print $3'}| sed "s/v//")
 if [[ -z "$REL_VER" ]]; then
     echo "Must provide version to prepare release" 1>&2
     exit 1
@@ -18,7 +18,7 @@ do
     if [[ $os == "windows" ]]; then
         extension=".exe"
     fi
-    GOOS=${os} GOARCH=${arch} go build -ldflags="$LDFLAGS" -o /tmp/terraform-provider-rhcs_${os}_${arch}
+    GOOS=${os} GOARCH=${arch} go build -ldflags="$ldflags" -o /tmp/terraform-provider-rhcs_${os}_${arch}
     mv /tmp/terraform-provider-rhcs_${os}_${arch} terraform-provider-rhcs_v${REL_VER}${extension}
     zip releases/terraform-provider-rhcs_${REL_VER}_${os}_${arch}.zip CHANGELOG.md LICENSE README.md terraform-provider-rhcs_v${REL_VER}${extension}
     rm terraform-provider-rhcs_v${REL_VER}${extension}
