@@ -7,7 +7,7 @@ COPY . .
 ENV GOFLAGS=-buildvcs=false
 
 RUN git config --global --add safe.directory /opt/app-root/src && \
-    ./get-latest-tag.sh > REL_VER && \
+    ./build/get-latest-tag.sh > REL_VER && \
 
     echo "Tag name from GITHUB_REF_NAME: GITHUB_REF_NAME" && \
     echo "Tag name from github.ref_name: ${{ github.ref_name }}" && \
