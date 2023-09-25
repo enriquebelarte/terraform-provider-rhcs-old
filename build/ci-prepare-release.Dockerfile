@@ -7,11 +7,10 @@ COPY . .
 ENV GOFLAGS=-buildvcs=false
 
 RUN git config --global --add safe.directory /opt/app-root/src && \
-    cd /opt/app-root/src && \
-    echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME" && \
+    ./get-latest-tag.sh > REL_VER && \
+
+    echo "Tag name from GITHUB_REF_NAME: GITHUB_REF_NAME" && \
     echo "Tag name from github.ref_name: ${{ github.ref_name }}" && \
 
-    export REL_VER=${GITHUB_REF_NAME} && \
-    echo "REL_VER=$REL_VER" && \
     make prepare_release version=$REL_VER
 

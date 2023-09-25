@@ -1,1 +1,3 @@
-export REL_VER=$(git describe --tags `git rev-list --tags --max-count=1`)
+#!/bin/bash
+REL_VER=$(git describe --tags --abbrev=0)
+echo $REL_VER
