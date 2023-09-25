@@ -9,4 +9,3 @@ RUN git config --global --add safe.directory /opt/app-root/src && \
     ls -l && \
     ./build/get-latest-tag.sh > REL_VER && \
     make prepare_release version=$REL_VER
-
