@@ -129,8 +129,7 @@ binary:
 .PHONY: prepare_release
 
 prepare_release:
-	bash build/build_multiarch
-
+	import_path=${import_path} ldflags="${ldflags}" bash ./build/build_multiarch
 
 .PHONY: delete_release
 delete_release:
