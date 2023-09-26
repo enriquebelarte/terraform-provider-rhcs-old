@@ -9,7 +9,7 @@ if [[ -z "$REL_VER" ]]; then
     exit 1
 fi
 mkdir -p releases
-
+# Manual build release based on Terraform docs.
 prepare_release() {
 for os in ${oses[@]}
 do
