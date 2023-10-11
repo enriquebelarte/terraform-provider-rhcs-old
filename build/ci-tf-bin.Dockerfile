@@ -1,3 +1,4 @@
+#FROM quay.io/app-sre/ubi8-ubi-minimal:latest AS builder
 FROM registry.access.redhat.com/ubi8/ubi-minimal:latest AS builder
 WORKDIR /root
 
@@ -7,11 +8,11 @@ RUN microdnf update -y && \
     microdnf clean all
 
 # terraform-provider-rhcs repo
-COPY . ./terraform-provider-rhcs
+COPY . .
 
 
-RUN cd terraform-provider-rhcs && go mod tidy && go mod vendor && make build &&\
-    echo 'RUN done'
+#RUN ls -l && go mod tidy && go mod vendor && make build &&\
+#    echo 'RUN done'
 
 FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 WORKDIR /root
