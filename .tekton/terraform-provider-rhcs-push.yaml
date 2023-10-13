@@ -20,7 +20,7 @@ spec:
   - name: dockerfile
     value: https://raw.githubusercontent.com/enriquebelarte/terraform-provider-rhcs/main/build/ci-prepare-release.Dockerfile
   - name: hermetic
-    value: "true"
+    value: "false"
   - name: git-url
     value: '{{repo_url}}'
   - name: output-image
