@@ -19,6 +19,8 @@ spec:
   params:
   - name: dockerfile
     value: https://raw.githubusercontent.com/enriquebelarte/terraform-provider-rhcs/main/build/ci-prepare-release.Dockerfile
+  - name: hermetic
+    value: "true"
   - name: git-url
     value: '{{repo_url}}'
   - name: output-image
