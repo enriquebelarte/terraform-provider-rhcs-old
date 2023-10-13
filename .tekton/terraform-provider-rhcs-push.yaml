@@ -19,6 +19,8 @@ spec:
   params:
   - name: dockerfile
     value: https://raw.githubusercontent.com/enriquebelarte/terraform-provider-rhcs/main/build/ci-prepare-release.Dockerfile
+  - name: hermetic
+    value: "false"
   - name: git-url
     value: '{{repo_url}}'
   - name: output-image
@@ -277,9 +279,6 @@ spec:
         operator: in
         values:
         - "false"
-      workspaces:
-      - name: test-ws
-        workspace: workspace
     - name: clair-scan
       params:
       - name: image-digest
