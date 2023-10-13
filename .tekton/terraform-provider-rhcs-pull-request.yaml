@@ -19,7 +19,7 @@ metadata:
 spec:
   params:
   - name: dockerfile
-    value: /build/ci-prepare-release.Dockerfile
+    value: Dockerfile
   - name: hermetic
     value: "false"
   - name: git-url
