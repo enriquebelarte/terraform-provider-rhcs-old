@@ -13,7 +13,7 @@ LABEL io.k8s.description="Terraform Provider RHCS"
 LABEL com.redhat.component="terraform-provider-rhcs"
 LABEL distribution-scope="test"
 LABEL name="terraform-provider-rhcs" release="X.Y" url="https://github.com/enriquebelarte/terraform-provider-rhcs"
-LABEL vendor="Red Hat"
+LABEL vendor="Red Hat, Inc."
 LABEL version="X.Y"
 
 COPY --from=builder /opt/app-root/src/releases /releases
